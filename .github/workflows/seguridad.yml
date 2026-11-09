@@ -2,7 +2,6 @@ name: Seguridad - Boveda Segura
 
 on:
   workflow_dispatch:
-  # Activar después de las pruebas:
   # push:
   # pull_request:
 
@@ -14,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Obtener el código
+      - name: Obtener el codigo
         uses: actions/checkout@v6
         with:
           persist-credentials: false
 
-      - name: Construir la imagen de la aplicación
+      - name: Construir la imagen de la aplicacion
         run: docker build -t boveda-segura:revision .
 
       - name: Analizar la imagen con Trivy
-        uses: aquasecurity/trivy-action@v0.36.0
-        with:
-          scan-type: image
-          image-ref: boveda-segura:revision
-          format: table
-          severity: HIGH,CRITICAL
-          exit-code: '1'
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:0.76.2 \
+            image --scanners vuln --format table \
+            --severity HIGH,CRITICAL --exit-code 1 \
+            --timeout 10m boveda-segura:revision
