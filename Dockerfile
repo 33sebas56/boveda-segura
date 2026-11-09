@@ -15,7 +15,10 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Crear el directorio y asignarlo a un usuario sin privilegios de administrador
-RUN mkdir -p /app/datos/archivos \
+RUN apt-get -o Acquire::Retries=0 update \
+    && apt-get -o Acquire::Retries=0 install -y --only-upgrade '?source-package(^apt$)' \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /app/datos/archivos \
     && chown -R 10001:10001 /app
 
 COPY --from=compilacion --chown=10001:10001 /app/target/*.jar /app/app.jar
