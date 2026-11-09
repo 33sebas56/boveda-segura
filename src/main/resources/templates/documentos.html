@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mis documentos | Bóveda Segura</title>
+
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+<header class="barra">
+
+    <a class="marca" th:href="@{/documentos}">
+        Bóveda Segura
+    </a>
+
+    <nav>
+
+        <span>
+            Hola, <strong th:text="${usuario}">usuario</strong>
+        </span>
+
+        <a th:if="${esAdmin}" th:href="@{/admin/auditoria}">
+            Auditoría
+        </a>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="secundario" type="submit">
+                Salir
+            </button>
+        </form>
+
+    </nav>
+
+</header>
+
+<main class="contenedor">
+
+    <h1>Mis documentos</h1>
+
+    <p class="subtitulo">
+        Guarda archivos de prueba cifrados en tu bóveda.
+    </p>
+
+    <p
+            class="mensaje exito"
+            th:if="${exito}"
+            th:text="${exito}">
+    </p>
+
+    <p
+            class="mensaje error"
+            th:if="${error}"
+            th:text="${error}">
+    </p>
+
+    <section class="tarjeta">
+
+        <h2>Subir un documento</h2>
+
+        <p>Selecciona un archivo de máximo 20 MB.</p>
+
+        <form
+                th:action="@{/documentos}"
+                method="post"
+                enctype="multipart/form-data"
+                class="subida">
+
+            <input
+                    type="file"
+                    name="archivo"
+                    required
+            >
+
+            <button type="submit">
+                Guardar documento
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="tarjeta">
+
+        <h2>Documentos guardados</h2>
+
+        <p th:if="${#lists.isEmpty(documentos)}">
+            Todavía no has subido documentos.
+        </p>
+
+        <div
+                class="tabla-contenedor"
+                th:unless="${#lists.isEmpty(documentos)}">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tamaño</th>
+                    <th>Fecha</th>
+                    <th>SHA-256</th>
+                    <th>Acción</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="documento : ${documentos}">
+
+                    <td th:text="${documento.nombreOriginal}"></td>
+
+                    <td>
+                        <span th:text="${documento.tamano}"></span>
+                        bytes
+                    </td>
+
+                    <td th:text="${documento.fechaSubida}"></td>
+
+                    <td
+                            class="hash"
+                            th:text="${documento.huellaSha256}">
+                    </td>
+
+                    <td>
+                        <a th:href="@{/documentos/{id}/descargar(id=${documento.id})}">
+                            Descargar
+                        </a>
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

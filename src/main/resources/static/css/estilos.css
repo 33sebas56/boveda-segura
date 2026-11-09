@@ -1,0 +1,205 @@
+:root {
+    font-family: Arial, sans-serif;
+    color: #20342d;
+    background: #f2f5ef;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.pagina-login {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.tarjeta {
+    background: white;
+    border: 1px solid #dbe4db;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.login {
+    width: min(100%, 420px);
+    padding: 36px;
+}
+
+.etiqueta {
+    color: #50755c;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+}
+
+h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+}
+
+.subtitulo {
+    color: #60736a;
+    margin: 0 0 24px;
+}
+
+.formulario {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input {
+    max-width: 100%;
+    padding: 11px;
+    border: 1px solid #bdcfc0;
+    border-radius: 7px;
+    font: inherit;
+}
+
+button {
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 7px;
+    background: #276344;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+}
+
+button:hover {
+    background: #194d32;
+}
+
+.formulario button {
+    margin-top: 12px;
+}
+
+.barra {
+    background: #193c2c;
+    color: white;
+    padding: 16px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.barra a {
+    color: white;
+    text-decoration: none;
+}
+
+.marca {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+nav form {
+    margin: 0;
+}
+
+.secundario {
+    background: transparent;
+    border: 1px solid #c3d8c7;
+    padding: 7px 12px;
+}
+
+.contenedor {
+    width: min(1100px, 92%);
+    margin: 36px auto;
+}
+
+.subida {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.mensaje {
+    padding: 12px;
+    border-radius: 7px;
+}
+
+.error {
+    color: #8c2727;
+    background: #fff0ef;
+}
+
+.exito {
+    color: #1a6340;
+    background: #e8f6ec;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #e3ebe3;
+    vertical-align: top;
+}
+
+th {
+    color: #52685a;
+    background: #f7f9f5;
+}
+
+td a {
+    color: #276344;
+    font-weight: bold;
+}
+
+.hash {
+    max-width: 180px;
+    word-break: break-all;
+    color: #60736a;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .barra,
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .barra {
+        padding: 16px;
+    }
+
+    .tarjeta {
+        padding: 18px;
+    }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Archivo demasiado grande | Bóveda Segura</title>
+
+    <link rel="stylesheet"
+          href="/css/estilos.css"
+          th:href="@{/css/estilos.css}">
+</head>
+
+<body class="pagina-login">
+
+<main class="tarjeta login">
+
+    <p class="etiqueta">BÓVEDA SEGURA</p>
+
+    <h1>Archivo demasiado grande</h1>
+
+    <p class="subtitulo">
+        El archivo o la solicitud supera el tamaño permitido.
+        Revisa el límite indicado en el formulario.
+    </p>
+
+    <a href="/documentos" th:href="@{/documentos}">
+        Volver a mis documentos
+    </a>
+
+</main>
+
+</body>
+</html>

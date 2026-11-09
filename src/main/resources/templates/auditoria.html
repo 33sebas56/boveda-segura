@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Auditoría | Bóveda Segura</title>
+
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+<header class="barra">
+
+    <a class="marca" th:href="@{/documentos}">
+        Bóveda Segura
+    </a>
+
+    <nav>
+
+        <a th:href="@{/documentos}">
+            Mis documentos
+        </a>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="secundario" type="submit">
+                Salir
+            </button>
+        </form>
+
+    </nav>
+
+</header>
+
+<main class="contenedor">
+
+    <h1>Auditoría</h1>
+
+    <p class="subtitulo">
+        Últimos 100 eventos registrados.
+    </p>
+
+    <section class="tarjeta tabla-contenedor">
+
+        <p th:if="${#lists.isEmpty(eventos)}">
+            Todavía no hay eventos.
+        </p>
+
+        <table th:unless="${#lists.isEmpty(eventos)}">
+
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Acción</th>
+                <th>Detalle</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="evento : ${eventos}">
+
+                <td th:text="${evento.fecha}"></td>
+
+                <td th:text="${evento.usuario}"></td>
+
+                <td th:text="${evento.accion}"></td>
+
+                <td th:text="${evento.detalle}"></td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+</body>
+</html>
